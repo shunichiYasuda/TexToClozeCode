@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.genSci.tools.TexToClozeCode.PrimaryController">
+   <children>
+      <Pane prefHeight="613.0" prefWidth="600.0">
+         <children>
+            <ToolBar prefHeight="40.0" prefWidth="600.0">
+              <items>
+                <Button mnemonicParsing="false" onAction="#execAction" text="変換" />
+                  <ChoiceBox fx:id="choice" prefWidth="150.0" />
+                  <Button mnemonicParsing="false" onAction="#clearSrcArea" text="Clear" />
+                  <Button mnemonicParsing="false" onAction="#quitAction" text="Quit" />
+              </items>
+            </ToolBar>
+            <TextArea fx:id="srcArea" layoutY="40.0" prefHeight="298.0" prefWidth="600.0" />
+            <ToolBar layoutY="338.0" prefHeight="40.0" prefWidth="600.0">
+               <items>
+                  <Button mnemonicParsing="false" onAction="#copyToClipboad" text="Copy" />
+                  <Button mnemonicParsing="false" onAction="#clearCodeArea" text="Clear" />
+               </items>
+            </ToolBar>
+            <TextArea fx:id="codeArea" layoutY="378.0" prefHeight="233.0" prefWidth="600.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>
