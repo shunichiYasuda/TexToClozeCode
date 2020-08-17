@@ -78,20 +78,22 @@ public class PrimaryController {
 
 	private void irregularCode() {
 		str = srcArea.getText();
-		//  {正解}の前までのテキストをとる。
+		// 全体として " }" のように、}直線の半角空白はまずい。
+		str = str.replaceAll(" \\}", "\\}");
+		// {正解}の前までのテキストをとる。
 		String questionStr = null;
-		String regex="(.+?)解.+?\\\\begin";
+		String regex = "(.+?)解.+?\\\\begin";
 		Pattern p = Pattern.compile(regex, Pattern.DOTALL);
-		Matcher m =p.matcher(str);
-		while(m.find()) {
+		Matcher m = p.matcher(str);
+		while (m.find()) {
 			questionStr = m.group(1);
 		}
-		//codeArea.appendText(questionStr+"\n");
+		// codeArea.appendText(questionStr+"\n");
 		str = changeMathCode(str);
 		str = changeBfCode(str);
 		// 定型文があればここで置換しておく
 		str = str.replaceAll("該当する解答欄にマークせよ", "選択肢番号を<b>半角英数字で</b>記入せよ");
-		//codeArea.appendText(str);
+		// codeArea.appendText(str);
 		// 正解の処理をやっておく
 		// 続いて、正解についても同じように処理をする。
 		regex = "解.+?\\\\begin\\{tabular}\\{[clr]+}(.+?)\\\\end\\{tabular}";
@@ -116,10 +118,8 @@ public class PrimaryController {
 		}
 		// ここまでで「選択肢内容」「正解番号」がListに保存されている。
 		/*
-		for (String s : ansList) {
-			codeArea.appendText(s + "\n");
-		}
-		*/
+		 * for (String s : ansList) { codeArea.appendText(s + "\n"); }
+		 */
 		// 問題の{\toi}に正解番号を埋め込んでいく。
 		// questionStr から{\toi}を探す。
 		regex = "\\{\\\\toi}";
@@ -127,10 +127,11 @@ public class PrimaryController {
 		m = p.matcher(str);
 		int count = 0;
 		while (m.find()) {
-			if(count >= ansList.size()) break;
-			//codeArea.appendText("find:"+count);
+			if (count >= ansList.size())
+				break;
+			// codeArea.appendText("find:"+count);
 			String rep = "{1:SA:=" + ansList.get(count) + "}";
-			//codeArea.appendText("count = "+count+"rep="+rep+"\n");
+			// codeArea.appendText("count = "+count+"rep="+rep+"\n");
 			str = str.replaceFirst(regex, rep);
 			count++;
 		}
@@ -141,7 +142,7 @@ public class PrimaryController {
 	//
 	private void standardCode() {
 		str = srcArea.getText();
-		//全体として " }" のように、}直線の半角空白はまずい。
+		// 全体として " }" のように、}直線の半角空白はまずい。
 		str = str.replaceAll(" \\}", "\\}");
 		// \begin{enumerate} までの「問題文」を切り出す。
 		String questionFirst = null;
@@ -279,7 +280,8 @@ public class PrimaryController {
 		m = p.matcher(questionStr);
 		count = 0;
 		while (m.find()) {
-			if(count >= ansList.size())break;
+			if (count >= ansList.size())
+				break;
 			String rep = "{1:SA:=" + ansList.get(count) + "}";
 			// modArea.appendText("rep="+rep+"\n");
 			questionStr = questionStr.replaceFirst(regex, rep);
@@ -320,6 +322,8 @@ public class PrimaryController {
 	private void calculusCode() {
 		// 数値問題の場合は「選択肢」がない、と仮定する。もし問題にあった場合はそれを処理しない。
 		str = srcArea.getText();
+		// 全体として " }" のように、}直線の半角空白はまずい。
+		str = str.replaceAll(" \\}", "\\}");
 		// \begin{enumerate} までの「問題文」を切り出す。
 		String questionFirst = null;
 		String regex = "(^.+?)\\\\begin";
