@@ -1,0 +1,87 @@
+\documentclass[autodetect-engine,dvipdfmx-if-dvi,ja=standard]{bxjsarticle}
+\usepackage[dvipdfmx]{graphicx}
+%%%%\usepackage{wrapfig}
+\def\thefootnote{\arabic{footnote})}
+\newcommand{\kakko}[1]{\fbox{#1}}
+\setlength{\topmargin}{-0.3in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\newcounter{mondai}
+\setcounter{mondai}{0}
+\newcommand{\go}{\stepcounter{mondai}}
+\renewcommand{\themondai}{\arabic{mondai}}
+\newcommand{\mondai}{\framebox[4zw]{{\bf 第{\themondai}問}}}
+\newcommand{\toi}{{\go}{\mondai}}
+%%%\renewcommand{\labelenumii}{\textcircled{\small \arabic{enumii}}}
+\newcommand{\ban}[1]{\textcircled{\small #1}}
+\pagestyle{empty}
+\begin{document}
+
+
+\begin{center}{\Large \bf ミクロ経済学入門(1) 予習・復習確認テスト　正解}2019年5月30日\end{center}
+解答は全てマークシートに記入すること。{\bf 注意！　裏面にも問題の続きと質問があります。}
+\section{供給曲線}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=6cm,keepaspectratio]{./SCurve_Quiz.png}
+\end{figure}
+上の図はある財の供給曲線を描いたものである。現在の供給曲線が$S_{0}$ であるとしよう。また、シフトしたものを$S_{1}$とする。この図について以下の問に答えなさい。同じ選択肢を何度使ってもよい。
+\begin{enumerate}
+	\item 供給曲線の縦軸は{\toi}で横軸は{\toi}であり、{\toi}が増加（上昇）すれば、{\toi}が増加（上昇）する関係を示している。
+	\item 現在点Eで示される（縦軸で示される変数と横軸で示される変数との）組み合わせが実現しているとしよう。このとき価格が上昇したら、新しい組み合わせは{\toi}へ移動する。
+	\item  この財の生産面の代替財の価格が上昇したら、供給曲線$S_{0}$は{\toi}へシフトする。また、この財の生産面の補完財の価格が上昇したら、供給曲線曲線$S_{0}$は{\toi}へシフトする。
+	\item この財の投入物の価格がさがったら、供給曲線$S_{0}$は{\toi}へシフトする。
+	\item この財の生産技術が改善したら供給曲線$S_{0}$は{\toi}へシフトする。
+\end{enumerate}
+{\bf 選択肢} \\
+\begin{tabular}{lllll}
+	\ban{1} 点A & \ban{2} 点B & \ban{3} 点C & \ban{4} 点D & \ban{5} $S_{1}$ \\
+	\ban{6} $S_{2} $ & \ban{7} 価格 $p$ & \ban{8} 需要量$x^{d}$ & \ban{9} 供給量 $x^{s}$ &
+\end{tabular}
+\setcounter{mondai}{0}\\
+\textbf{正解} \\
+\begin{tabular}{lllll}
+	{\toi} \ban{7} & {\toi} \ban{9} & {\toi} \ban{7} & {\toi} \ban{9} & {\toi} \ban{2} \\
+	{\toi} \ban{5} & {\toi} \ban{6} & {\toi} \ban{6} & {\toi} \ban{6} &
+\end{tabular}
+\pagebreak
+\section{供給曲線2}
+\begin{enumerate}
+	\item ガソリンの供給を考えよう。ガソリンの生産には投入物として原油が必要である。また、ガソリンの生産面の代替財としては灯油がある。以下の事象が起きた場合、それは事象が起きる前の供給量、供給曲線にどのような変化をもたらすだろうか？ただし、いずれの場合も「他の事情が等しければ（\textit{ceteris paribus}）」である。
+	それぞれの事象がもたらす正しい変化を選択肢から選んでその番号をマークせよ。	
+	\begin{enumerate}
+		\item 原油の価格が上昇した。{\toi}
+		\item ガソリン価格が上昇した。{\toi}
+		\item 灯油価格が上昇した{\toi}
+		\item ガソリンの価格は将来さがると予測された{\toi}
+		\item シェールオイルの層が発見され、あらたな企業がガソリンの生産を始めた。{\toi}
+	\end{enumerate}
+	{\bf 選択肢} \\
+	\begin{tabular}{ll}
+		\ban{1} 供給曲線上の左下への移動 & \ban{2} 供給曲線上の右上への移動 \\
+		\ban{3} 供給曲線の右へのシフト & \ban{4} 供給曲線の左へのシフト
+	\end{tabular}
+	\setcounter{mondai}{9} \\
+	{\bf 正解} \\
+	\begin{tabular}{lllll}
+		{\toi} \ban{4} & {\toi} \ban{2} & {\toi} \ban{4} & {\toi} \ban{3} & {\toi} \ban{3}
+	\end{tabular}
+	\item 財の価格を$p$、その供給量を$x^{s}$とすると供給関数は一般的に$x^{s} = S(p)$ と表される。いま、この関数が具体的に
+	\[
+	x^{s} = 20 + \frac{1}{2}p
+	\]
+	であるとしよう。このとき以下の問に答えなさい。一つの\kakko{　} には一桁の数値が入る。あてはまる数値 1～9 には\ban{1}～\ban{9},0 には\ban{10}をマークしなさい。
+	\begin{enumerate}
+		\item $p=20$ の時の供給量は {\toi}{\toi} である。
+		\item 価格が4 上昇すれば、供給量は {\toi} 増加する。
+		\item 価格が 16 低下すれば供給量は {\toi}減少する。
+		\item 供給量が32になるのは価格が{\toi}{\toi}の時である。
+	\end{enumerate}
+	\addtocounter{mondai}{-6}
+	\textbf{正解} \\
+	\begin{tabular}{llllll}
+		{\toi} \ban{3}  & {\toi} \ban{10} & {\toi}\ban{2} & {\toi}\ban{8} & {\toi}\ban{2} & {\toi}\ban{4} 
+	\end{tabular}
+\end{enumerate}
+
+\end{document}
