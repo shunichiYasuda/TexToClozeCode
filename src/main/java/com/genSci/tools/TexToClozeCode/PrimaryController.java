@@ -170,22 +170,23 @@ public class PrimaryController {
 		String questionStr = null;
 		while (m.find()) {
 			questionStr = m.group(1).trim();
+			// オプション[label=...] を消去
+			String regex2 = "\\[label.+?\\]\n";
+			questionStr = questionStr.replaceAll(regex2, "");
+			//
 			questionStr = questionStr.replaceAll("\t", "");
 			questionStr = questionStr.replaceAll("\\\\item", "<li>");
 			questionStr = questionStr.replaceAll("\n", "</li>\n");
 			// trim()で末尾を消してしまっているので末尾に付加
 			questionStr = questionStr + "</li>\n";
-			// オプション[label=...] を消去
-			String regex2 = "\\[label.+?\\]";
-			questionStr = questionStr.replaceAll(regex2, "");
-			// modArea.appendText(questionStr+"\n");
+			//codeArea.appendText(questionStr+"\n");
 		}
 		// Tex 数式モード変換
 		questionStr = changeMathCode(questionStr);
 		// {\bf ...}変換
 		questionStr = changeBfCode(questionStr);
 		// ここまででenumerate環境で{\toi}を含んだ文がquestionStr に保存
-
+		//codeArea.appendText(questionStr+"\n");
 		// tabular 環境下の「選択肢」を保存
 		regex = "選択肢.+?\\\\begin\\{tabular}\\{[clr]+}(.+?)\\\\end\\{tabular}";
 		p = Pattern.compile(regex, Pattern.DOTALL);
@@ -193,21 +194,25 @@ public class PrimaryController {
 		String selectStr = null;
 		while (m.find()) {
 			selectStr = m.group(1);
-			// modArea.appendText(selectStr + "\n");
+			//codeArea.appendText(selectStr + "\n");
 		}
 		// ここまでで、selectStr に選択肢番号とその内容が入る。
 		// 数式コードの変換
+		selectStr = changeMathCode(selectStr);
+		//System.out.println("after changeMathCode()\n"+selectStr);
 		// selectStr を区切って内容を List に保存する。
 		// \ban{*}を削除
 		selectStr = selectStr.replaceAll("\\\\ban\\{.+?}", "");
-		// modArea.appendText(selectStr+"\n");
+		//System.out.println("after delete ban\n"+selectStr);
 		// 2行以上の時は文末に「\\」+改行コードが入っているのでこれを&に変換
-		selectStr = selectStr.replaceAll("\\\\.+?\\n", "&");
+		//selectStr = selectStr.replaceAll("\\\\.+?\\n", "&");
+		selectStr = selectStr.replaceAll("\\\\\\n", "&");
+		//System.out.println("after add & \n"+selectStr);
 		// 前後の空白・改行コードを消す
 		selectStr = selectStr.trim();
 		// 文末の&を消す。
 		selectStr = selectStr.replaceAll("(?!^)&+$", "");
-		// modArea.appendText(selectStr + "\n");
+		//codeArea.appendText(selectStr + "\n");
 		// これで選択肢が&区切りの String になったので、List に内容を格納
 		List<String> selectList = new ArrayList<String>();
 		String[] selectArray = selectStr.split("&");
@@ -491,19 +496,21 @@ public class PrimaryController {
 			String rep = "<b>" + ss + "</b>";
 			str = str.replaceFirst(regex, rep);
 		}
+		//System.out.println("in BfCode.. "+str);
 		return str;
 	}
 
 	private String changeMathCode(String str) {
+		//codeArea.appendText("in changeMathCode()\n"+str+"\n");
 		// $$を\(\)に変える。
 		String regex = "\\$(.+?)\\$";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(str);
 		while (m.find()) {
 			String ss = m.group(1);
-			// System.out.println("find:"+ss+"\n");
+			System.out.println("find:"+ss+"\n");
 			if (ss.contains("\\")) {
-				// System.out.println("hit \\");
+				//System.out.println("hit \\");
 				String regex2 = "\\\\(.)";
 				Pattern p2 = Pattern.compile(regex2);
 				Matcher m2 = p2.matcher(ss);
@@ -518,6 +525,7 @@ public class PrimaryController {
 			}
 			String rep = "\\\\(" + ss + "\\\\)";
 			str = str.replaceFirst(regex, rep);
+			
 		}
 		// \[ \] かもしれない。
 		regex = "\\[(.+?)\\\\]";
@@ -530,6 +538,7 @@ public class PrimaryController {
 			str = str.replaceFirst("\\[", "(");
 			str = str.replaceFirst("\\]", ")");
 		}
+		System.out.println(str);
 		return str;
 	}
 
